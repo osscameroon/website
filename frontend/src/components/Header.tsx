@@ -17,7 +17,7 @@ export function Header() {
   const isActive = (href: string) => href.startsWith('/') && !href.includes('#') && pathname === href;
   return <header className="sticky top-0 z-50 border-b border-border-soft bg-white/90 backdrop-blur-xl">
     <div className="mx-auto flex max-w-container items-center gap-7 py-4" style={{paddingLeft:'clamp(16px,4vw,24px)',paddingRight:'clamp(16px,4vw,24px)'}}>
-      <Link href="/" className="flex shrink-0 items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue"><LogoMark className="h-[38px] w-[38px]"/><span className="sr-only">OSS Cameroon</span></Link>
+      <Link href="/" className="flex shrink-0 items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue"><LogoMark className="h-9 w-auto"/><span className="sr-only">OSS Cameroon</span></Link>
       <nav className="hidden flex-1 items-center gap-7 md:flex" aria-label="Primary">
         {nav.map(([label, href]) => (
           <Link key={label} href={href} className={`border-b-2 pb-[3px] text-[15px] transition-colors ${isActive(href) ? 'border-ink font-bold text-ink' : 'border-transparent font-medium text-muted-alt hover:text-ink'}`}>{label}</Link>
