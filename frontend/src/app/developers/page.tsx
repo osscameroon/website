@@ -14,7 +14,7 @@ export default async function DevelopersPage({ searchParams }: { searchParams: R
     <h1 className="m-0 max-w-[20em] text-[clamp(30px,4vw,44px)] font-extrabold leading-[1.14] tracking-[-.03em]">Meet the experienced developers in our community</h1>
     <Suspense><DeveloperControls techs={TECHS}/></Suspense>
     <ResultRow start={result.start} end={result.end} total={result.total} page={result.page} pages={result.pages}/>
-    {result.total ? <div className="mt-7 grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-[22px]">{result.items.map((dev) => <DeveloperCard key={dev.id} dev={dev} href={hrefFor(dev.id)}/>)}</div> : <p className="py-20 text-center text-[17px] font-semibold text-muted-alt">No developer matches these filters.</p>}
+    {result.total ? <div className="mt-7 grid grid-cols-[repeat(auto-fit,minmax(min(100%,230px),1fr))] gap-[22px]">{result.items.map((dev) => <DeveloperCard key={dev.id} dev={dev} href={hrefFor(dev.id)}/>)}</div> : <p className="py-20 text-center text-[17px] font-semibold text-muted-alt">No developer matches these filters.</p>}
     <div className="mt-8 flex justify-end"><Suspense><Pager page={result.page} pages={result.pages} scrollTop/></Suspense></div>
     {modalDev && <Suspense><DeveloperModal dev={modalDev}/></Suspense>}
   </section>;

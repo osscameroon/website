@@ -11,7 +11,7 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Rec
     <h1 className="m-0 max-w-[20em] text-[clamp(30px,4vw,44px)] font-extrabold leading-[1.14] tracking-[-.03em]">Discover all the projects of our community</h1>
     <Suspense><ProjectControls langs={LANGS}/></Suspense>
     <ResultRow start={result.start} end={result.end} total={result.total} page={result.page} pages={result.pages}/>
-    {result.total ? <div className="mt-7 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">{result.items.map((project) => <ProjectCard key={project.id} project={project}/>)}</div> : <p className="py-20 text-center text-[17px] font-semibold text-muted-alt">No project matches these filters.</p>}
+    {result.total ? <div className="mt-7 grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-6">{result.items.map((project) => <ProjectCard key={project.id} project={project}/>)}</div> : <p className="py-20 text-center text-[17px] font-semibold text-muted-alt">No project matches these filters.</p>}
     <div className="mt-8 flex justify-end"><Suspense><Pager page={result.page} pages={result.pages} scrollTop/></Suspense></div>
   </section>;
 }
