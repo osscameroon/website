@@ -255,10 +255,10 @@ function queryDevelopersFallback(query: DeveloperQuery) {
 /* ── Fetch top contributors as full Developer objects (by followers + project stars) ── */
 export async function getTopContributors(): Promise<Developer[]> {
   try {
-    // Fetch top users and top projects in parallel via GET, skip cache for large responses
+    // Fetch top users and top projects in parallel via GET, cached with revalidate
     const [usersRes, projectsRes] = await Promise.all([
-      apiFetch<ApiSearchResponse<ApiUser>>('/github/users/search?query=&count=1500&page=1', { noCache: true }),
-      apiFetch<ApiSearchResponse<{ owner?: { login?: string }; stargazers_count?: number }>>('/github/projects/search?query=&count=1000&page=1', { noCache: true }),
+      apiFetch<ApiSearchResponse<ApiUser>>('/github/users/search?query=&count=1500&page=1'),
+      apiFetch<ApiSearchResponse<{ owner?: { login?: string }; stargazers_count?: number }>>('/github/projects/search?query=&count=1000&page=1'),
     ]);
 
     if (!usersRes.result) return [];
