@@ -30,7 +30,7 @@ export function DeveloperModal({ dev }: { dev: Developer }) {
 
   return <div onClick={close} className="fixed inset-0 z-[100] flex items-start justify-center overflow-auto bg-ink/45 p-[clamp(16px,4vw,56px)]">
     <div ref={cardRef} tabIndex={-1} onClick={(e)=>e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="dev-modal-title" className="relative w-full max-w-[800px] animate-[floatUp_.3s_ease_both] rounded-modal bg-white shadow-modal">
-      <button onClick={close} aria-label="Close" className="absolute right-[-14px] top-[26px] z-10 flex h-[46px] w-[46px] items-center justify-center rounded-full border-0 bg-white text-ink shadow-[0_4px_16px_rgba(16,24,40,.2)]"><X size={22}/></button>
+      <button onClick={close} aria-label="Close" className="absolute right-4 top-4 z-10 flex h-[46px] w-[46px] items-center justify-center rounded-full border-0 bg-white text-ink shadow-[0_4px_16px_rgba(16,24,40,.2)]"><X size={22}/></button>
       <div className="h-[110px] rounded-t-modal bg-[#F4F6FA]" style={{ backgroundImage: 'url(/assets/projects/miniyotas.png)', backgroundSize: '380px', backgroundPosition: 'center', backgroundRepeat: 'repeat' }} />
       <div className="px-[clamp(20px,5vw,58px)] pb-12 text-center">
         <Image src={dev.avatar} alt={dev.name} width={120} height={120} className="mx-auto -mt-[60px] h-[120px] w-[120px] rounded-full border-4 border-blue object-cover"/>

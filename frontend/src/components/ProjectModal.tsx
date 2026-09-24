@@ -30,7 +30,7 @@ export function ProjectModal({ project }: { project: Project }) {
 
   return <div onClick={close} className="fixed inset-0 z-[100] flex items-start justify-center overflow-auto bg-ink/45 p-[clamp(16px,4vw,56px)]">
     <div ref={cardRef} tabIndex={-1} onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="proj-modal-title" className="relative w-full max-w-[800px] animate-[floatUp_.3s_ease_both] rounded-modal bg-white shadow-modal">
-      <button onClick={close} aria-label="Close" className="absolute right-[-14px] top-[26px] z-10 flex h-[46px] w-[46px] items-center justify-center rounded-full border-0 bg-white text-ink shadow-[0_4px_16px_rgba(16,24,40,.2)]"><X size={22}/></button>
+      <button onClick={close} aria-label="Close" className="absolute right-4 top-4 z-10 flex h-[46px] w-[46px] items-center justify-center rounded-full border-0 bg-white text-ink shadow-[0_4px_16px_rgba(16,24,40,.2)]"><X size={22}/></button>
 
       {/* Header */}
       <div className="flex items-center gap-5 rounded-t-modal bg-[#F4F6FA] px-[clamp(20px,5vw,58px)] py-8">
