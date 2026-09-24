@@ -16,7 +16,7 @@ def create_github_users_index():
         client.get_index(storage.KIND_USERS)
     except Exception as e:
         client.create_index(storage.KIND_USERS, {"primaryKey": "id"})
-    client.index(storage.KIND_USERS).update_documents(ret)
+    client.index(storage.KIND_USERS).update_documents(ret, primary_key="id")
     print("started updating github_users documents")
 
 
@@ -28,7 +28,7 @@ def create_github_projects_index():
         client.get_index(storage.KIND_PROJECTS)
     except Exception as e:
         client.create_index(storage.KIND_PROJECTS, {"primaryKey": "id"})
-    client.index(storage.KIND_PROJECTS).update_documents(ret)
+    client.index(storage.KIND_PROJECTS).update_documents(ret, primary_key="id")
     print("started updating github_projects documents")
 
 if __name__ == "__main__":
