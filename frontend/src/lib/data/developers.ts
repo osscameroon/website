@@ -106,28 +106,28 @@ const asset = (path: string) => `/${path}`;
 const BASE_DEVS_RAW = [
   { name: "Eric Cabrel TIOGO", login: "tericcabrel", company: "OVRSEA", role: "Software Engineer", location: "Paris, France", img: "assets/members/eric.png", avatar: "assets/avatars/modal.png", open: true,
     stack: ["Node.js","Java","Typescript","GraphQL","Microservice","AWS","Docker","Git","MySQL","MongoDB","Bash","React"],
-    bio: "Etiam convallis elementum sapien, a aliquam turpis aliquam vitae. Praesent sollicitudin felis vel mi facilisis posuere. Nulla ultrices facilisis justo, non varius nisl semper vel. Interdum et malesuada fames ac ante ipsum primis in faucibus.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
+    bio: "Backend engineer passionate about scalable APIs, microservices, and developer tooling. Active OSS contributor and technical writer.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
   { name: "Guy Landry", login: "guylandry", company: "GreenSoft", role: "GreenSoft Engineering", location: "Yaoundé, Cameroon", img: "assets/members/guy.png", avatar: "assets/avatars/a4.png", open: true,
     stack: ["PHP","Laravel","Vue.js","MySQL","Docker","Git"],
-    bio: "Etiam convallis elementum sapien, a aliquam turpis aliquam vitae. Praesent sollicitudin felis vel mi facilisis posuere. Nulla ultrices facilisis justo, non varius nisl semper vel.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
+    bio: "Full stack developer building web applications with Laravel and Vue.js. Focused on clean architecture and mentoring junior developers.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
   { name: "Benjamin Cooper", login: "benjamincooper", company: "Y-note", role: "Software Engineer", location: "Douala, Cameroon", img: "assets/members/benjamin.png", avatar: "assets/avatars/a2.png", open: false,
     stack: ["Python","Django","PostgreSQL","Redis","Git","Linux"],
-    bio: "Praesent sollicitudin felis vel mi facilisis posuere. Nulla ultrices facilisis justo, non varius nisl semper vel. Interdum et malesuada fames ac ante ipsum primis in faucibus.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
+    bio: "Python developer specializing in backend systems and data pipelines. Believer in open source as a way to democratize technology.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
   { name: "Jesse Ikolo B.", login: "jesseikolo", company: "IUC, Douala.", role: "Programactor", location: "Douala, Cameroon", img: "assets/members/jesse.png", avatar: "assets/avatars/a3.png", open: true,
     stack: ["Dart","Flutter","Firebase","Kotlin","Git"],
-    bio: "Etiam convallis elementum sapien, a aliquam turpis aliquam vitae. Nulla ultrices facilisis justo, non varius nisl semper vel.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
+    bio: "Mobile developer crafting cross-platform apps with Flutter and Kotlin. Passionate about building tools that improve everyday life in Cameroon.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
   { name: "Franck L.", login: "franckl", company: "Jangolo", role: "Data analyst", location: "Yaoundé, Cameroon", img: "assets/members/franck.png", avatar: "assets/avatars/a1.png", open: false,
     stack: ["Python","Pandas","SQL","Airflow","Docker"],
-    bio: "Nulla ultrices facilisis justo, non varius nisl semper vel. Interdum et malesuada fames ac ante ipsum primis in faucibus.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
+    bio: "Data analyst turning raw data into actionable insights. Building open-source data pipelines and sharing knowledge with the community.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
   { name: "Jerry M.", login: "jerrym", company: "Kamtar", role: "Full stack developer Jr.", location: "Bafoussam, Cameroon", img: "assets/members/jerry.png", avatar: "assets/avatars/a5.png", open: true,
     stack: ["Typescript","React","Node.js","MongoDB","Git"],
-    bio: "Etiam convallis elementum sapien, a aliquam turpis aliquam vitae. Praesent sollicitudin felis vel mi facilisis posuere.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
+    bio: "Junior full stack developer learning by building. OSS Cameroon helped me go from tutorials to real-world contributions.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
   { name: "Patrick Zocli", login: "patrickzocli", company: "DevStyle", role: "Mobile Engineer", location: "Lomé, Togo", img: "assets/members/patrick.png", avatar: "assets/avatars/a7.png", open: false,
     stack: ["Kotlin","Java","Android","Firebase","Git"],
-    bio: "Praesent sollicitudin felis vel mi facilisis posuere. Interdum et malesuada fames ac ante ipsum primis in faucibus.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
+    bio: "Android developer focused on performant mobile experiences. Advocate for collaborative development and code reviews.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
   { name: "Brandon K.", login: "brandonk", company: "Sanam", role: "Software engineer", location: "Buea, Cameroon", img: "assets/members/brandon.png", avatar: "assets/avatars/a6.png", open: true,
     stack: ["Go","Docker","Kubernetes","PostgreSQL","Git","AWS"],
-    bio: "Etiam convallis elementum sapien, a aliquam turpis aliquam vitae. Nulla ultrices facilisis justo, non varius nisl semper vel.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
+    bio: "Infrastructure engineer building cloud-native systems with Go and Kubernetes. Contributing to open-source DevOps tooling.", github_url: "#", blog: "", email: "", twitter: "", followers: 0, public_repos: 0 },
 ];
 
 export const BASE_DEVS: Developer[] = BASE_DEVS_RAW.map((d, id) => ({ ...d, id, img: asset(d.img), avatar: asset(d.avatar) }));
@@ -252,10 +252,8 @@ function queryDevelopersFallback(query: DeveloperQuery) {
   return { items: out.slice(start, start + PER_PAGE), total, page, pages, start: total ? start + 1 : 0, end: Math.min(total, start + PER_PAGE) };
 }
 
-export type HeroAvatar = { src: string; login: string };
-
-/* ── Fetch avatar URLs from top 20 contributors (by followers + project stars) ── */
-export async function getTopAvatars(count: number = 7): Promise<HeroAvatar[]> {
+/* ── Fetch top contributors as full Developer objects (by followers + project stars) ── */
+export async function getTopContributors(): Promise<Developer[]> {
   try {
     // Fetch top users and top projects in parallel via GET, skip cache for large responses
     const [usersRes, projectsRes] = await Promise.all([
@@ -280,16 +278,13 @@ export async function getTopAvatars(count: number = 7): Promise<HeroAvatar[]> {
     const scored = usersRes.result.hits
       .filter((u) => u.avatar_url)
       .map((u) => ({
-        src: u.avatar_url!,
-        login: u.login,
+        user: u,
         score: Math.max(u.followers ?? 0, starsByLogin.get(u.login) ?? 0),
       }))
       .sort((a, b) => b.score - a.score);
 
-    // Take top 50, then pick `count` random from those
-    const top = scored.slice(0, 50);
-    const shuffled = top.sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, count).map(({ src, login }) => ({ src, login }));
+    // Return top 50 as full Developer objects
+    return scored.slice(0, 50).map((s, i) => mapUser(s.user, i));
   } catch {
     return [];
   }
