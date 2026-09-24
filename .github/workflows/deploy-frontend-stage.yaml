@@ -43,8 +43,7 @@ jobs:
         with:
           context: ./frontend
           build-args: |
-            baseURL=https://osscameroon-website-api.stage.osscameroon.com
-            env=development
+            NEXT_PUBLIC_API_BASE_URL=https://osscameroon-website-api.stage.osscameroon.com
 
           push: true
           tags: ${{ steps.meta.outputs.tags }}
