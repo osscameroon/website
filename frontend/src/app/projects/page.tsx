@@ -25,4 +25,4 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Rec
     {modalProject && <Suspense><ProjectModal project={modalProject}/></Suspense>}
   </section>;
 }
-function ResultRow({ start, end, total, page, pages }: { start:number; end:number; total:number; page:number; pages:number }) { return <div className="flex flex-wrap items-center justify-between gap-4"><p className="text-[15px] text-muted-alt"><strong className="text-ink">{start} - {end}</strong> of <strong className="text-ink">{total}</strong> results</p><Suspense><Pager page={page} pages={pages}/></Suspense></div>; }
+function ResultRow({ start, end, total, page, pages }: { start:number; end:number; total:number; page:number; pages:number }) { return <div className="flex flex-wrap items-center justify-between gap-4"><p className="text-[15px] text-muted-alt"><strong className="text-ink">{start} - {end}</strong> of <strong className="text-ink">{total}</strong> results</p><div className="hidden sm:block"><Suspense><Pager page={page} pages={pages}/></Suspense></div></div>; }

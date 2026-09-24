@@ -17,4 +17,4 @@ export function Footer() {
   </footer>;
 }
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) { return <div><h4 className="mb-1 text-base font-bold">{title}</h4><div className="mb-[22px] h-[3px] w-[26px] bg-blue"/><div className="flex flex-col gap-3.5 text-[14.5px] text-muted-light-3">{children}</div></div>; }
-function Social({ label, href, children }: { label: string; href: string; children: React.ReactNode }) { return <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-white text-navy transition hover:bg-blue hover:text-white">{children}</a>; }
+function Social({ label, href, children }: { label: string; href: string; children: React.ReactNode }) { return <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="flex h-[44px] w-[44px] items-center justify-center rounded-full bg-white text-navy transition hover:bg-blue hover:text-white">{children}</a>; }

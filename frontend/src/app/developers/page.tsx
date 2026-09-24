@@ -15,9 +15,9 @@ export default async function DevelopersPage({ searchParams }: { searchParams: R
     <h1 className="m-0 max-w-[20em] text-[clamp(30px,4vw,44px)] font-extrabold leading-[1.14] tracking-[-.03em]">Meet the experienced developers in our community</h1>
     <Suspense><DeveloperControls techs={TECHS}/></Suspense>
     <ResultRow start={result.start} end={result.end} total={result.total} page={result.page} pages={result.pages}/>
-    {result.total ? <div className="mt-7 grid grid-cols-[repeat(auto-fit,minmax(min(100%,230px),1fr))] gap-[22px]">{result.items.map((dev) => <DeveloperCard key={dev.login} dev={dev} href={hrefFor(dev.login)}/>)}</div> : <p className="py-20 text-center text-[17px] font-semibold text-muted-alt">No developer matches these filters.</p>}
+    {result.total ? <div className="mt-7 grid grid-cols-2 gap-3 sm:gap-[22px] md:grid-cols-[repeat(auto-fit,minmax(230px,1fr))]">{result.items.map((dev) => <DeveloperCard key={dev.login} dev={dev} href={hrefFor(dev.login)}/>)}</div> : <p className="py-20 text-center text-[17px] font-semibold text-muted-alt">No developer matches these filters.</p>}
     <div className="mt-8 flex justify-end"><Suspense><Pager page={result.page} pages={result.pages} scrollTop/></Suspense></div>
     {modalDev && <Suspense><DeveloperModal dev={modalDev}/></Suspense>}
   </section>;
 }
-function ResultRow({ start, end, total, page, pages }: { start:number; end:number; total:number; page:number; pages:number }) { return <div className="flex flex-wrap items-center justify-between gap-4"><p className="text-[15px] text-muted-alt"><strong className="text-ink">{start} - {end}</strong> of <strong className="text-ink">{total}</strong> results</p><Suspense><Pager page={page} pages={pages}/></Suspense></div>; }
+function ResultRow({ start, end, total, page, pages }: { start:number; end:number; total:number; page:number; pages:number }) { return <div className="flex flex-wrap items-center justify-between gap-4"><p className="text-[15px] text-muted-alt"><strong className="text-ink">{start} - {end}</strong> of <strong className="text-ink">{total}</strong> results</p><div className="hidden sm:block"><Suspense><Pager page={page} pages={pages}/></Suspense></div></div>; }

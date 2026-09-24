@@ -28,22 +28,22 @@ export function ProjectModal({ project }: { project: Project }) {
   const created = project.created_at ? new Date(project.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
   const updated = project.updated_at ? new Date(project.updated_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
 
-  return <div onClick={close} className="fixed inset-0 z-[100] flex items-start justify-center overflow-auto bg-ink/45 p-[clamp(16px,4vw,56px)]">
+  return <div onClick={close} className="fixed inset-0 z-[100] flex items-start justify-center overflow-auto bg-ink/45 p-3 sm:p-[clamp(16px,4vw,56px)]">
     <div ref={cardRef} tabIndex={-1} onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="proj-modal-title" className="relative w-full max-w-[800px] animate-[floatUp_.3s_ease_both] rounded-modal bg-white shadow-modal">
-      <button onClick={close} aria-label="Close" className="absolute right-4 top-4 z-10 flex h-[46px] w-[46px] items-center justify-center rounded-full border-0 bg-white text-ink shadow-[0_4px_16px_rgba(16,24,40,.2)]"><X size={22}/></button>
+      <button onClick={close} aria-label="Close" className="absolute right-3 top-3 z-10 flex h-[44px] w-[44px] items-center justify-center rounded-full border-0 bg-white text-ink shadow-[0_4px_16px_rgba(16,24,40,.2)] sm:right-4 sm:top-4 sm:h-[46px] sm:w-[46px]"><X size={22}/></button>
 
       {/* Header */}
-      <div className="flex items-center gap-5 rounded-t-modal bg-[#F4F6FA] px-[clamp(20px,5vw,58px)] py-8">
-        <Image src={project.owner_avatar || project.img} alt="" width={64} height={64} className="h-16 w-16 rounded-[14px] border-2 border-white object-cover shadow-rest"/>
+      <div className="flex items-center gap-3 rounded-t-modal bg-[#F4F6FA] px-5 py-6 sm:gap-5 sm:px-[clamp(20px,5vw,58px)] sm:py-8">
+        <Image src={project.owner_avatar || project.img} alt="" width={64} height={64} className="h-12 w-12 shrink-0 rounded-[14px] border-2 border-white object-cover shadow-rest sm:h-16 sm:w-16"/>
         <div className="min-w-0">
           <h2 id="proj-modal-title" className="m-0 truncate text-[clamp(22px,3vw,28px)] font-extrabold tracking-[-.02em]">{project.name}</h2>
           {project.full_name && <p className="mt-1 truncate text-[14px] text-muted-alt">{project.full_name}</p>}
         </div>
       </div>
 
-      <div className="px-[clamp(20px,5vw,58px)] pb-12 pt-8">
+      <div className="px-5 pb-10 pt-6 sm:px-[clamp(20px,5vw,58px)] sm:pb-12 sm:pt-8">
         {/* Stats row */}
-        <div className="flex flex-wrap gap-5 text-[14.5px]">
+        <div className="flex flex-wrap gap-2.5 text-[14.5px] sm:gap-5">
           <Stat icon={<Star size={17} className="text-amber-500"/>} label="Stars" value={formatNum(project.stars)}/>
           <Stat icon={<GitFork size={17} className="text-blue"/>} label="Forks" value={formatNum(project.forks)}/>
           <Stat icon={<BookOpen size={17} className="text-green-600"/>} label="Issues" value={formatNum(project.open_issues)}/>
@@ -86,6 +86,6 @@ export function ProjectModal({ project }: { project: Project }) {
 }
 
 function Hairline() { return <div className="my-7 h-px bg-border-soft"/>; }
-function Stat({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) { return <div className="flex items-center gap-2 rounded-input border border-border bg-grey-50 px-4 py-2.5">{icon}<span className="font-bold text-ink">{value}</span><span className="text-muted-alt">{label}</span></div>; }
+function Stat({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) { return <div className="flex items-center gap-1.5 rounded-input border border-border bg-grey-50 px-2.5 py-2 text-[13px] sm:gap-2 sm:px-4 sm:py-2.5 sm:text-[14.5px]">{icon}<span className="font-bold text-ink">{value}</span><span className="text-muted-alt">{label}</span></div>; }
 function Detail({ label, children }: { label: string; children: React.ReactNode }) { return <div><p className="mb-1 text-[12px] font-semibold uppercase tracking-[.06em] text-muted-alt">{label}</p><p className="text-[15px] font-medium text-ink">{children}</p></div>; }
 function formatNum(n: number): string { if (n >= 1000) return `${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k`; return String(n); }

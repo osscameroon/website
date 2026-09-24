@@ -20,15 +20,15 @@ export function Pager({ page, pages, scrollTop = false }: { page: number; pages:
   start = Math.max(1, end - windowSize + 1);
   const nums = Array.from({ length: end - start + 1 }, (_, i) => start + i);
 
-  const btn = (label: string, key: string, active: boolean, disabled: boolean, target: number) =>
-    <button key={key} onClick={() => go(target)} disabled={disabled} aria-current={active ? 'page' : undefined} className={`h-[34px] min-w-[34px] rounded-[7px] border-0 px-2 text-[15px] font-medium transition-colors ${active ? 'bg-blue text-white font-bold' : disabled ? 'text-muted-light-3 cursor-not-allowed' : 'text-ink-70 hover:bg-grey-100'}`}>{label}</button>;
+  const btn = (label: string, key: string, active: boolean, disabled: boolean, target: number, hideOnMobile = false) =>
+    <button key={key} onClick={() => go(target)} disabled={disabled} aria-current={active ? 'page' : undefined} className={`h-[38px] min-w-[38px] rounded-[7px] border-0 px-2 text-[15px] font-medium transition-colors ${active ? 'bg-blue text-white font-bold' : disabled ? 'text-muted-light-3 cursor-not-allowed' : 'text-ink-70 hover:bg-grey-100'} ${hideOnMobile ? 'hidden sm:inline-flex' : ''}`}>{label}</button>;
 
-  return <div className="flex items-center gap-1 rounded-input border border-border bg-white p-2">
-    {btn('«', 'first', false, page <= 1, 1)}
+  return <div className="flex items-center gap-1 rounded-input border border-border bg-white p-1.5 sm:p-2">
+    {btn('«', 'first', false, page <= 1, 1, true)}
     {btn('‹', 'prev', false, page <= 1, Math.max(1, page - 1))}
     {nums.map((n) => btn(String(n), `p${n}`, n === page, false, n))}
     {btn('›', 'next', false, page >= pages, Math.min(pages, page + 1))}
-    {btn('»', 'last', false, page >= pages, pages)}
-    <span className="px-2 text-[13px] text-muted-alt">{page}/{pages}</span>
+    {btn('»', 'last', false, page >= pages, pages, true)}
+    <span className="px-1.5 text-[13px] text-muted-alt sm:px-2">{page}/{pages}</span>
   </div>;
 }

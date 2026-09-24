@@ -28,12 +28,12 @@ export function DeveloperModal({ dev }: { dev: Developer }) {
   const hasSocial = dev.github_url !== '#' || dev.twitter || dev.blog || dev.email;
   const hasStats = dev.followers > 0 || dev.public_repos > 0;
 
-  return <div onClick={close} className="fixed inset-0 z-[100] flex items-start justify-center overflow-auto bg-ink/45 p-[clamp(16px,4vw,56px)]">
+  return <div onClick={close} className="fixed inset-0 z-[100] flex items-start justify-center overflow-auto bg-ink/45 p-3 sm:p-[clamp(16px,4vw,56px)]">
     <div ref={cardRef} tabIndex={-1} onClick={(e)=>e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="dev-modal-title" className="relative w-full max-w-[800px] animate-[floatUp_.3s_ease_both] rounded-modal bg-white shadow-modal">
-      <button onClick={close} aria-label="Close" className="absolute right-4 top-4 z-10 flex h-[46px] w-[46px] items-center justify-center rounded-full border-0 bg-white text-ink shadow-[0_4px_16px_rgba(16,24,40,.2)]"><X size={22}/></button>
-      <div className="h-[110px] rounded-t-modal bg-[#F4F6FA]" style={{ backgroundImage: 'url(/assets/projects/miniyotas.png)', backgroundSize: '380px', backgroundPosition: 'center', backgroundRepeat: 'repeat' }} />
-      <div className="px-[clamp(20px,5vw,58px)] pb-12 text-center">
-        <Image src={dev.avatar} alt={dev.name} width={120} height={120} className="mx-auto -mt-[60px] h-[120px] w-[120px] rounded-full border-4 border-blue object-cover"/>
+      <button onClick={close} aria-label="Close" className="absolute right-3 top-3 z-10 flex h-[44px] w-[44px] items-center justify-center rounded-full border-0 bg-white text-ink shadow-[0_4px_16px_rgba(16,24,40,.2)] sm:right-4 sm:top-4 sm:h-[46px] sm:w-[46px]"><X size={22}/></button>
+      <div className="h-[80px] rounded-t-modal bg-[#F4F6FA] sm:h-[110px]" style={{ backgroundImage: 'url(/assets/projects/miniyotas.png)', backgroundSize: '380px', backgroundPosition: 'center', backgroundRepeat: 'repeat' }} />
+      <div className="px-5 pb-10 text-center sm:px-[clamp(20px,5vw,58px)] sm:pb-12">
+        <Image src={dev.avatar} alt={dev.name} width={120} height={120} className="mx-auto -mt-[40px] h-[96px] w-[96px] rounded-full border-4 border-blue object-cover sm:-mt-[60px] sm:h-[120px] sm:w-[120px]"/>
         <h2 id="dev-modal-title" className="mt-5 text-[clamp(26px,3vw,32px)] font-extrabold tracking-[-.02em]">{dev.name}</h2>
         <p className="mt-1 text-[15px] text-muted-alt">@{dev.login}</p>
         <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-[14px] font-medium text-muted-alt">

@@ -61,9 +61,9 @@ export default function CommunitiesPage() {
     </div>
 
     {/* Category chips */}
-    <div className="mb-8 flex flex-wrap gap-2">
+    <div className="-mx-[clamp(16px,4vw,24px)] mb-8 flex gap-2 overflow-x-auto px-[clamp(16px,4vw,24px)] pb-2 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
       {CATEGORIES.map((cat) => (
-        <button key={cat.value} onClick={() => setActiveCategory(cat.value)} className={`rounded-pill border-[1.5px] px-[15px] py-2 text-[13.5px] font-semibold transition ${activeCategory === cat.value ? 'border-blue bg-blue text-white' : 'border-border bg-white text-ink-70 hover:border-blue-200 hover:bg-blue-50'}`}>{cat.label}</button>
+        <button key={cat.value} onClick={() => setActiveCategory(cat.value)} className={`shrink-0 rounded-pill border-[1.5px] px-[15px] py-2 text-[13.5px] font-semibold transition ${activeCategory === cat.value ? 'border-blue bg-blue text-white' : 'border-border bg-white text-ink-70 hover:border-blue-200 hover:bg-blue-50'}`}>{cat.label}</button>
       ))}
     </div>
 
@@ -72,7 +72,7 @@ export default function CommunitiesPage() {
 
     {/* Grid */}
     {filtered.length > 0 ? (
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-5">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-5">
         {filtered.map((c) => <CommunityCard key={c.name} community={c}/>)}
       </div>
     ) : (
