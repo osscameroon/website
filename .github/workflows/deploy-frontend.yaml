@@ -1,4 +1,4 @@
-name: Build frontend stage image
+name: Build frontend image
 
 on:
   push:
@@ -6,11 +6,11 @@ on:
       - main
     paths:
       - frontend/**
-      - .github/workflows/deploy-frontend-stage.yaml
+      - .github/workflows/deploy-frontend.yaml
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}-frontend-stage
+  IMAGE_NAME: ${{ github.repository }}-frontend
 
 jobs:
   build-and-push-image:
@@ -21,10 +21,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Log in to the Container registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -32,19 +32,17 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=sha,enable=true,priority=100,prefix=,suffix=,format=long
+            type=raw,value=latest
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v5
         with:
           context: ./frontend
-          build-args: |
-            NEXT_PUBLIC_API_BASE_URL=https://osscameroon-website-api.stage.osscameroon.com
-
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
