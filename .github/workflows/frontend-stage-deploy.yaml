@@ -1,12 +1,7 @@
 name: frontend stage deployment
 
 on:
-  push:
-    paths:
-      - .github/workflows/frontend-stage-deploy.yaml
-      - frontend/**
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
     build:
