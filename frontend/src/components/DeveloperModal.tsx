@@ -1,15 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { BookOpen, Building2, Globe, Link as LinkIcon, Mail, MapPin, Users, X } from 'lucide-react';
+import { BookOpen, Building2, Link as LinkIcon, Mail, MapPin, Users, X } from 'lucide-react';
 import { useCallback, useEffect, useRef } from 'react';
 import type { Developer } from '@/lib/data/developers';
 import { GitHubIcon, LinkedInIcon, TwitterIcon } from './icons';
 
-export function DeveloperModal({ dev }: { dev: Developer }) {
-  const router = useRouter(); const pathname = usePathname(); const params = useSearchParams(); const cardRef = useRef<HTMLDivElement>(null);
-  const close = useCallback(() => { const next = new URLSearchParams(params.toString()); next.delete('dev'); router.push(`${pathname}?${next.toString()}`, { scroll: false }); }, [params, pathname, router]);
+export function DeveloperModal({ dev, onClose }: { dev: Developer; onClose: () => void }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const close = useCallback(() => onClose(), [onClose]);
   useEffect(() => {
     const root = cardRef.current; const prev = document.activeElement as HTMLElement | null; root?.focus();
     const onKey = (e: KeyboardEvent) => {
