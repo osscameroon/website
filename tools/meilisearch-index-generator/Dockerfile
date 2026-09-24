@@ -1,8 +1,13 @@
-FROM python:3.8-slim-buster
+FROM python:3.14-slim-bookworm
 
-RUN apt update && apt install git gcc curl procps lsof -y
-
-RUN apt install make
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    gcc \
+    curl \
+    procps \
+    lsof \
+    make \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
