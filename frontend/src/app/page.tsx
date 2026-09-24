@@ -1,3 +1,5 @@
+export const revalidate = 60;
+
 import { HomeClient } from '@/components/HomeClient';
 import { getTopContributors, type Developer } from '@/lib/data/developers';
 
