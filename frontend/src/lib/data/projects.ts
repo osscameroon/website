@@ -174,6 +174,25 @@ export async function getProjects() {
   }
 }
 
+/* ── Fetch a single project by name (for modal) ── */
+export async function getProject(name: string): Promise<Project | null> {
+  const placeholder = BASE_PROJECTS.find((p) => p.name === name);
+  if (placeholder) return placeholder;
+
+  try {
+    const data = await apiFetch<ApiSearchResponse<ApiProject>>('/github/projects/search', {
+      method: 'POST',
+      body: JSON.stringify({ query: name, page: 1, count: 5 }),
+    });
+    if (!data.result) return null;
+    const match = data.result.hits.find((p) => p.name === name);
+    if (!match) return null;
+    return mapProject(match, 0);
+  } catch {
+    return null;
+  }
+}
+
 /* ── Fallback: in-memory filtering ── */
 function makeFallbackProjects(): Project[] {
   const projects: Project[] = [];

@@ -26,7 +26,7 @@ export function Header() {
       </nav>
       <div className="ml-auto hidden items-center gap-3 lg:flex">
         <Link href="/#support" className="rounded-btn border-[1.5px] border-blue px-5 py-3 text-[15px] font-semibold text-blue transition hover:-translate-y-0.5 hover:bg-blue hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue">Support the community</Link>
-        <Link href="#" className="rounded-btn bg-blue px-6 py-3 text-[15px] font-semibold text-white shadow-button transition hover:-translate-y-0.5 hover:bg-blue-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue">Join us</Link>
+        <a href="https://t.me/+UpKZh_KXTaTx7JD7" target="_blank" rel="noopener noreferrer" className="rounded-btn bg-blue px-6 py-3 text-[15px] font-semibold text-white shadow-button transition hover:-translate-y-0.5 hover:bg-blue-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue">Join us</a>
       </div>
       <button type="button" onClick={()=>setOpen((v)=>!v)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="mobile-menu" className="ml-auto flex h-11 w-11 items-center justify-center rounded-btn border border-border text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue lg:hidden">{open ? <X size={22}/> : <Menu size={22}/>}</button>
     </div>
@@ -38,7 +38,7 @@ export function Header() {
         })}
         <div className="mt-3 flex flex-col gap-3">
           <Link href="/#support" className="rounded-btn border-[1.5px] border-blue px-5 py-3 text-center text-[15px] font-semibold text-blue transition hover:bg-blue hover:text-white">Support the community</Link>
-          <Link href="#" className="rounded-btn bg-blue px-6 py-3 text-center text-[15px] font-semibold text-white shadow-button transition hover:bg-blue-dark">Join us</Link>
+          <a href="https://t.me/+UpKZh_KXTaTx7JD7" target="_blank" rel="noopener noreferrer" className="rounded-btn bg-blue px-6 py-3 text-center text-[15px] font-semibold text-white shadow-button transition hover:bg-blue-dark">Join us</a>
         </div>
       </nav>
     </div>}

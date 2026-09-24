@@ -3,7 +3,7 @@ import { ProjectCard } from '@/components/Cards';
 import { ProjectControls } from '@/components/DirectoryControls';
 import { ProjectModal } from '@/components/ProjectModal';
 import { Pager } from '@/components/Pager';
-import { getLanguages, queryProjects } from '@/lib/data/projects';
+import { getLanguages, getProject, queryProjects } from '@/lib/data/projects';
 import { many, one, pageNum, type SearchValue } from '@/lib/search';
 
 export default async function ProjectsPage({ searchParams }: { searchParams: Record<string, SearchValue> }) {
@@ -12,7 +12,9 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Rec
     getLanguages(),
   ]);
   const projectName = one(searchParams.project);
-  const modalProject = projectName ? result.items.find(p => p.name === projectName) ?? null : null;
+  const modalProject = projectName
+    ? result.items.find(p => p.name === projectName) ?? await getProject(projectName)
+    : null;
   const hrefFor = (name: string) => { const p = new URLSearchParams(); Object.entries(searchParams).forEach(([k,v]) => { if (k !== 'project') (Array.isArray(v)?v:[v]).filter(Boolean).forEach((x)=>p.append(k,String(x))); }); p.set('project', name); return `/projects?${p.toString()}`; };
   return <section className="mx-auto max-w-container px-[clamp(16px,4vw,24px)] py-[clamp(40px,6vw,76px)] pb-[clamp(56px,8vw,90px)]">
     <h1 className="m-0 max-w-[20em] text-[clamp(30px,4vw,44px)] font-extrabold leading-[1.14] tracking-[-.03em]">Discover all the projects of our community</h1>
