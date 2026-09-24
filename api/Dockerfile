@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM python:3.14-slim-buster
 
 # https://smirnov-am.github.io/running-flask-in-production-with-docker/
 # https://abdul-the-coder.medium.com/how-to-deploy-a-containerised-python-web-application-with-docker-flask-and-uwsgi-8862a08bd5df

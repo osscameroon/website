@@ -1,4 +1,4 @@
-from flask_restplus import Api as TheAPI
+from flask_restx import Api as TheAPI
 from flask import Blueprint, url_for
 
 from app.main.controller.github_controller import api as github

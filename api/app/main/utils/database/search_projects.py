@@ -123,7 +123,7 @@ def post_search_projects(
         ret["hits"] = sort_result_by(sort_type, ret["hits"])
     # if sort_type is specified we fetch every single elements and sort them handle the pagination on the application level
     else:
-        query_object = {"q": query, "limit": 1000}
+        query_object = {"q": query, "limit": 5000}
         if filters != "":
             query_object["q"] += " " + filters
         ret = index.search(storage.KIND_PROJECTS, query_object)

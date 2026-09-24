@@ -1,29 +1,28 @@
-### OSS Cameroon
+# OSS Cameroon website
 
-## How to install and launch
+Fresh Next.js 14 App Router rebuild of the OSS Cameroon marketing and directory site.
 
-- Copy and update the with correct params (you can use the stage api)
+## Run locally
 
 ```bash
-cp .env.example .env
+npm install
+npm run dev
+npm run build
+npm run start
 ```
 
-- Then start the frontend
-  - From your computer
-    ```bash
-    # install dependencies
-    yarn install
+## Data seam
 
-    # start the frontend
-    yarn start
-    ```
-  - From the dockerfile
-    ```bash
-    # Build the docker image
-    docker build --no-cache -t osscameroon:latest -f Dockerfile .
+Seed data lives in `src/lib/data/`. The app uses async functions (`getDevelopers`, `queryDevelopers`, `getProjects`, `queryProjects`) so a real API can replace the in-memory arrays without changing page or card components.
 
-    # Then run it on port 3000
-    docker run -it -p 3000:3000 osscameroon
-    ```
+## URL contract
 
-Then the app should be running on localhost:3000
+- `/developers`: `q`, `expertise`, `sort`, `page`, `open=true`, repeatable or comma-separated `tech`.
+- Developer modal: `/developers?dev=<id>`; it closes by removing `dev` and is linkable.
+- `/projects`: `q`, `stars`, `sort`, `page`, repeatable or comma-separated `lang`.
+
+Search, select, chip, and checkbox changes reset `page` to `1`.
+
+## Assets
+
+Images under `public/assets/**` are low-resolution layout placeholders from the design handoff. Replace them before shipping with real photography plus official Python, Laravel, and Flutter community logos.

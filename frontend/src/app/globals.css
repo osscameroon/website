@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #fff; color: #101828; }
+a { text-decoration: none; color: inherit; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid #3B76EF; outline-offset: 3px; }
+.portrait-scrim::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(16,24,40,0) 40%, rgba(16,24,40,.82)); }

@@ -1,22 +1,40 @@
-FROM node:12.22-buster-slim
-ARG baseURL="http://127.0.0.1:8811"
-ARG env="development"
-ENV REACT_APP_API_BASE_URL=$baseURL
-ENV REACT_APP_ENV=$env
+FROM node:18-alpine AS base
 
-RUN mkdir /code
-WORKDIR /code
-ADD ./package.json ./
-ADD ./yarn.lock ./
+# --- Dependencies ---
+FROM base AS deps
+WORKDIR /app
+COPY package.json yarn.lock* package-lock.json* ./
+RUN if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
+    elif [ -f package-lock.json ]; then npm ci; \
+    else npm install; fi
 
-RUN yarn install
-
+# --- Build ---
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-RUN yarn build
+ARG NEXT_PUBLIC_API_BASE_URL="http://127.0.0.1:8811"
+ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
+ENV NEXT_TELEMETRY_DISABLED=1
 
-FROM flashspys/nginx-static
-RUN apk update && apk upgrade
-RUN rm /etc/nginx/conf.d/default.conf
-COPY --from=0 /code/nginx-custom.conf /etc/nginx/conf.d/default.conf
-COPY --from=0 /code/build /static
+RUN npm run build
+
+# --- Production ---
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+EXPOSE 3000
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["node", "server.js"]
