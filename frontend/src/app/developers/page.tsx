@@ -6,11 +6,12 @@ import { Pager } from '@/components/Pager';
 import { getDeveloper, queryDevelopers, TECHS } from '@/lib/data/developers';
 import { many, one, pageNum, type SearchValue } from '@/lib/search';
 
-export default async function DevelopersPage({ searchParams }: { searchParams: Record<string, SearchValue> }) {
-  const result = await queryDevelopers({ q: one(searchParams.q), expertise: one(searchParams.expertise), sort: one(searchParams.sort), page: pageNum(searchParams.page), open: one(searchParams.open) === 'true', tech: many(searchParams.tech) });
-  const devLogin = one(searchParams.dev);
+export default async function DevelopersPage({ searchParams }: { searchParams?: Promise<Record<string, SearchValue>> }) {
+  const params = (await searchParams) ?? {};
+  const result = await queryDevelopers({ q: one(params.q), expertise: one(params.expertise), sort: one(params.sort), page: pageNum(params.page), open: one(params.open) === 'true', tech: many(params.tech) });
+  const devLogin = one(params.dev);
   const modalDev = devLogin ? (result.items.find(d => d.login === devLogin) ?? await getDeveloper(devLogin)) : null;
-  const hrefFor = (login: string) => { const p = new URLSearchParams(); Object.entries(searchParams).forEach(([k,v]) => { if (k !== 'dev') (Array.isArray(v)?v:[v]).filter(Boolean).forEach((x)=>p.append(k,String(x))); }); p.set('dev', login); return `/developers?${p.toString()}`; };
+  const hrefFor = (login: string) => { const p = new URLSearchParams(); Object.entries(params).forEach(([k,v]) => { if (k !== 'dev') (Array.isArray(v)?v:[v]).filter(Boolean).forEach((x)=>p.append(k,String(x))); }); p.set('dev', login); return `/developers?${p.toString()}`; };
   return <section className="mx-auto max-w-container px-[clamp(16px,4vw,24px)] py-[clamp(40px,6vw,76px)] pb-[clamp(56px,8vw,90px)]">
     <h1 className="m-0 max-w-[20em] text-[clamp(30px,4vw,44px)] font-extrabold leading-[1.14] tracking-[-.03em]">Meet the experienced developers in our community</h1>
     <Suspense><DeveloperControls techs={TECHS}/></Suspense>

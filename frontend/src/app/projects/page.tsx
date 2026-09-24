@@ -6,16 +6,17 @@ import { Pager } from '@/components/Pager';
 import { getLanguages, getProject, queryProjects } from '@/lib/data/projects';
 import { many, one, pageNum, type SearchValue } from '@/lib/search';
 
-export default async function ProjectsPage({ searchParams }: { searchParams: Record<string, SearchValue> }) {
+export default async function ProjectsPage({ searchParams }: { searchParams?: Promise<Record<string, SearchValue>> }) {
+  const params = (await searchParams) ?? {};
   const [result, langs] = await Promise.all([
-    queryProjects({ q: one(searchParams.q), stars: one(searchParams.stars), sort: one(searchParams.sort), page: pageNum(searchParams.page), lang: many(searchParams.lang) }),
+    queryProjects({ q: one(params.q), stars: one(params.stars), sort: one(params.sort), page: pageNum(params.page), lang: many(params.lang) }),
     getLanguages(),
   ]);
-  const projectName = one(searchParams.project);
+  const projectName = one(params.project);
   const modalProject = projectName
     ? result.items.find(p => p.name === projectName) ?? await getProject(projectName)
     : null;
-  const hrefFor = (name: string) => { const p = new URLSearchParams(); Object.entries(searchParams).forEach(([k,v]) => { if (k !== 'project') (Array.isArray(v)?v:[v]).filter(Boolean).forEach((x)=>p.append(k,String(x))); }); p.set('project', name); return `/projects?${p.toString()}`; };
+  const hrefFor = (name: string) => { const p = new URLSearchParams(); Object.entries(params).forEach(([k,v]) => { if (k !== 'project') (Array.isArray(v)?v:[v]).filter(Boolean).forEach((x)=>p.append(k,String(x))); }); p.set('project', name); return `/projects?${p.toString()}`; };
   return <section className="mx-auto max-w-container px-[clamp(16px,4vw,24px)] py-[clamp(40px,6vw,76px)] pb-[clamp(56px,8vw,90px)]">
     <h1 className="m-0 max-w-[20em] text-[clamp(30px,4vw,44px)] font-extrabold leading-[1.14] tracking-[-.03em]">Discover all the projects of our community</h1>
     <Suspense><ProjectControls langs={langs}/></Suspense>

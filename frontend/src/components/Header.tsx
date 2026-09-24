@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { LogoMark } from './icons';
 
 const nav = [
@@ -12,8 +12,11 @@ const nav = [
 
 export function Header() {
   const pathname = usePathname();
+  return <HeaderInner key={pathname} pathname={pathname} />;
+}
+
+function HeaderInner({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false);
-  useEffect(() => { setOpen(false); }, [pathname]);
   const isActive = (href: string) => href.startsWith('/') && !href.includes('#') && pathname === href;
   return <header className="sticky top-0 z-50 border-b border-border-soft bg-white/90 backdrop-blur-xl">
     <div className="mx-auto flex max-w-container items-center gap-7 py-4" style={{paddingLeft:'clamp(16px,4vw,24px)',paddingRight:'clamp(16px,4vw,24px)'}}>
