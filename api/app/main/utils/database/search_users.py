@@ -8,6 +8,7 @@ import time
 
 SORT_TYPE_MOST_RECENT = "most_recent"
 SORT_TYPE_ALPHABETIC = "alphabetic"
+SORT_TYPE_POPULARITY = "popularity"
 
 def get_search_users(query: str, count: int = 20, page: int = 1):
     """
@@ -52,11 +53,17 @@ def most_recent_sort(item):
     return time.mktime(time_tuple)
 
 
+def popularity_sort(item):
+    return item.get("followers", 0)
+
+
 def sort_result_by(sort_type: str, items: list = []):
     if sort_type == SORT_TYPE_ALPHABETIC:
         items.sort(key=alphabetic_sort)
     elif sort_type == SORT_TYPE_MOST_RECENT:
         items.sort(key=most_recent_sort, reverse=True)
+    elif sort_type == SORT_TYPE_POPULARITY:
+        items.sort(key=popularity_sort, reverse=True)
 
     return items
 
@@ -85,6 +92,7 @@ def post_search_users(
     if sort_type not in [
         SORT_TYPE_ALPHABETIC,
         SORT_TYPE_MOST_RECENT,
+        SORT_TYPE_POPULARITY,
     ]:
         query_object = {"q": query, "limit": count, "offset": offset}
         ret = index.search(
@@ -96,7 +104,7 @@ def post_search_users(
         ret["hits"] = sort_result_by(sort_type, ret["hits"])
     # if sort_type is specified we fetch every single elements and sort them handle the pagination on the application level
     else:
-        query_object = {"q": query, "limit": 1500}
+        query_object = {"q": query, "limit": 5000}
         ret = index.search(storage.KIND_USERS, query_object)
         if not ret or len(ret) < 1:
             return {"code": 400, "reason": "nothing found"}

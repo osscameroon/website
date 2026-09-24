@@ -12,14 +12,23 @@ export const COMMUNITIES = [
   { name: "Laravel Cameroun", desc: "Bienvenue sur le site de la communauté des développeurs PHP et Laravel du Cameroun.", img: asset("assets/communities/laravel.png") },
   { name: "Flutter Cameroun", desc: "#Flutter Cameroon is a community of #Dart and Flutter developers from #Cameroon.", img: asset("assets/communities/flutter.png") },
 ];
-export const HERO_AVATARS = [
-  { src: asset("assets/avatars/a1.png"), left: "42%", top: "2%", size: 122, d: 0 },
-  { src: asset("assets/avatars/a2.png"), left: "76%", top: "0%", size: 104, d: .4 },
-  { src: asset("assets/avatars/a3.png"), left: "30%", top: "38%", size: 100, d: .8 },
-  { src: asset("assets/avatars/a4.png"), left: "56%", top: "32%", size: 152, d: .2 },
-  { src: asset("assets/avatars/a5.png"), left: "45%", top: "70%", size: 88, d: 1.1 },
-  { src: asset("assets/avatars/a6.png"), left: "72%", top: "74%", size: 118, d: .6 },
-  { src: asset("assets/avatars/a7.png"), left: "13%", top: "80%", size: 112, d: .9 },
+export const HERO_AVATAR_DEFAULTS = [
+  asset("assets/avatars/a1.png"),
+  asset("assets/avatars/a2.png"),
+  asset("assets/avatars/a3.png"),
+  asset("assets/avatars/a4.png"),
+  asset("assets/avatars/a5.png"),
+  asset("assets/avatars/a6.png"),
+  asset("assets/avatars/a7.png"),
+];
+export const HERO_AVATAR_POSITIONS = [
+  { left: "42%", top: "2%", size: 122, d: 0 },
+  { left: "76%", top: "0%", size: 104, d: .4 },
+  { left: "30%", top: "38%", size: 100, d: .8 },
+  { left: "56%", top: "32%", size: 152, d: .2 },
+  { left: "45%", top: "70%", size: 88, d: 1.1 },
+  { left: "72%", top: "74%", size: 118, d: .6 },
+  { left: "13%", top: "80%", size: 112, d: .9 },
 ];
 export const TESTIMONIALS = [
   { name: "Brandon K.", role: "Software engineer", img: asset("assets/testimonials/brandon.png"), text: "Vestibulum commodo sapien non elit porttitor, vitae volutpat nibh mollis. Nulla porta risus id neque tempor, in efficitur justo imperdiet." },

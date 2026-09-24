@@ -2,6 +2,10 @@
 const nextConfig = {
   images: {
     localPatterns: [{ pathname: '/assets/**' }],
+    remotePatterns: [
+      { protocol: 'https', hostname: '**.githubusercontent.com' },
+      { protocol: 'https', hostname: '**.github.com' },
+    ],
   },
 };
 

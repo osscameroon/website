@@ -1,4 +1,4 @@
-from flask_restplus import Resource, fields
+from flask_restx import Resource, fields
 from flask import request
 
 # from app.main.utils.decorator import *

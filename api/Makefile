@@ -20,7 +20,7 @@ install-deps: venv $(CONFIG_FILE)
 
 ##run: run the api locally
 run: install-deps
-	$(PYTHON) manage.py run
+	$(PYTHON) manage.py
 
 lint: venv
 	$(PYTHON) -m flake8 . --show-source --statistics

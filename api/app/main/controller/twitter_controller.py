@@ -1,5 +1,5 @@
 from flask import request
-from flask_restplus import Resource
+from flask_restx import Resource
 from app.main.utils.dto import ApiDto
 from app.main.utils.database.twitter.top_tweets import get_top_tweets
 from app.main.utils.helpers.cache import Cache
