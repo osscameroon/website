@@ -252,40 +252,33 @@ function queryDevelopersFallback(query: DeveloperQuery) {
   return { items: out.slice(start, start + PER_PAGE), total, page, pages, start: total ? start + 1 : 0, end: Math.min(total, start + PER_PAGE) };
 }
 
-/* ── Fetch top contributors as full Developer objects (by followers + project stars) ── */
+/* ── Fetch top contributors as full Developer objects (by followers) ── */
+const TOP_CONTRIBUTORS_TIMEOUT_MS = 5000;
+
 export async function getTopContributors(): Promise<Developer[]> {
+  const start = Date.now();
   try {
-    // Fetch top users and top projects in parallel via GET, cached with revalidate
-    const [usersRes, projectsRes] = await Promise.all([
-      apiFetch<ApiSearchResponse<ApiUser>>('/github/users/search?query=&count=1500&page=1'),
-      apiFetch<ApiSearchResponse<{ owner?: { login?: string }; stargazers_count?: number }>>('/github/projects/search?query=&count=1000&page=1'),
-    ]);
+    const usersRes = await apiFetch<ApiSearchResponse<ApiUser>>(
+      '/github/users/search?query=&count=500&page=1',
+      { timeout: TOP_CONTRIBUTORS_TIMEOUT_MS },
+    );
 
-    if (!usersRes.result) return [];
-
-    // Sum up stars per user from their projects
-    const starsByLogin = new Map<string, number>();
-    if (projectsRes.result) {
-      for (const p of projectsRes.result.hits) {
-        const login = p.owner?.login;
-        if (login) {
-          starsByLogin.set(login, (starsByLogin.get(login) ?? 0) + (p.stargazers_count ?? 0));
-        }
-      }
+    if (!usersRes.result) {
+      console.warn(`[getTopContributors] API returned no users result (${Date.now() - start}ms)`);
+      return [];
     }
 
-    // Score each user: whichever is higher — followers or total stars
-    const scored = usersRes.result.hits
+    console.log(`[getTopContributors] fetched ${usersRes.result.hits.length} users (${Date.now() - start}ms)`);
+
+    // Sort by followers
+    const sorted = usersRes.result.hits
       .filter((u) => u.avatar_url)
-      .map((u) => ({
-        user: u,
-        score: Math.max(u.followers ?? 0, starsByLogin.get(u.login) ?? 0),
-      }))
-      .sort((a, b) => b.score - a.score);
+      .sort((a, b) => (b.followers ?? 0) - (a.followers ?? 0));
 
     // Return top 50 as full Developer objects
-    return scored.slice(0, 50).map((s, i) => mapUser(s.user, i));
-  } catch {
+    return sorted.slice(0, 50).map((s, i) => mapUser(s, i));
+  } catch (err) {
+    console.error(`[getTopContributors] failed after ${Date.now() - start}ms:`, err);
     return [];
   }
 }

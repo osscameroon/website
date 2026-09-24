@@ -2,10 +2,12 @@ function getApiBase() {
   return process.env.API_BASE_URL || 'http://127.0.0.1:8811';
 }
 
-export async function apiFetch<T>(path: string, init?: RequestInit & { noCache?: boolean }): Promise<T> {
-  const { noCache, ...fetchInit } = init ?? {};
+export async function apiFetch<T>(path: string, init?: RequestInit & { noCache?: boolean; timeout?: number }): Promise<T> {
+  const { noCache, timeout, ...fetchInit } = init ?? {};
+  const signal = timeout ? AbortSignal.timeout(timeout) : undefined;
   const res = await fetch(`${getApiBase()}${path}`, {
     ...fetchInit,
+    signal,
     headers: { 'Content-Type': 'application/json', ...fetchInit?.headers },
     ...(noCache ? { cache: 'no-store' as const } : { next: { revalidate: 60 } }),
   });
