@@ -12,7 +12,7 @@ google-cloud-core==2.2.1
 google-cloud-datastore==2.1.6
 googleapis-common-protos==1.54.0
 grpcio==1.43.0
-grpcio-status==1.43.0
+grpcio-status==1.84.0
 idna==3.3
 iniconfig==1.1.1
 libcst==0.3.23
