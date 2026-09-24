@@ -71,7 +71,7 @@ export const HERO_AVATAR_POSITIONS = [
   { left: "13%", top: "80%", size: 112, d: .9 },
 ];
 export const TESTIMONIALS = [
-  { name: "Brandon K.", role: "Software engineer", img: asset("assets/testimonials/brandon.png"), text: "OSS Cameroon gave me the confidence to lead my own open-source project. The mentoring and code reviews from experienced developers made all the difference." },
-  { name: "Franck L.", role: "Data analyst", img: asset("assets/testimonials/patrick.png"), text: "Being part of this community helped me grow from a solo coder to a real collaborator. The live coding sessions and knowledge sharing are invaluable." },
-  { name: "Jerry M.", role: "Full stack developer Jr.", img: asset("assets/testimonials/jerry.png"), text: "I joined with basic skills and now I contribute to projects used by real people. The community pushes you to ship, not just learn in isolation." },
+  { name: "Brady Fomegne", role: "Software Engineer", img: "https://avatars.githubusercontent.com/u/45305909?v=4", text: "OSS Cameroon gave me the confidence to lead my own open-source project. The mentoring and code reviews from experienced developers made all the difference." },
+  { name: "Boris Mbarga", role: "Software Engineer", img: "https://avatars.githubusercontent.com/u/5704817?v=4", text: "Being part of this community helped me grow from a solo coder to a real collaborator. The live coding sessions and knowledge sharing are invaluable." },
+  { name: "Asam", role: "Software Developer", img: "https://avatars.githubusercontent.com/u/34966088?v=4", text: "I joined with basic skills and now I contribute to projects used by real people. The community pushes you to ship, not just learn in isolation." },
 ];

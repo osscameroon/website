@@ -82,7 +82,7 @@ export default function CommunitiesPage() {
 }
 
 function CommunityCard({ community: c }: { community: Community }) {
-  const cardClass = "group flex flex-col overflow-hidden rounded-card border border-border bg-white transition duration-300 hover:-translate-y-1 hover:shadow-hover";
+  const cardClass = "group flex h-full flex-col overflow-hidden rounded-card border border-border bg-white transition duration-300 hover:-translate-y-1 hover:shadow-hover";
   const inner = (
     <div className="flex flex-1 flex-col p-6">
       <div className="mb-3 flex items-start justify-between gap-3">
@@ -91,9 +91,9 @@ function CommunityCard({ community: c }: { community: Community }) {
         </div>
         {c.url && <ExternalLink size={16} className="mt-1 shrink-0 text-muted-alt opacity-0 transition group-hover:opacity-100"/>}
       </div>
-      <h3 className="mt-1 text-[18px] font-bold leading-snug">{c.name}</h3>
-      <p className="mt-2.5 flex-1 text-[14.5px] leading-[1.6] text-muted-alt">{c.desc}</p>
-      <div className="mt-4 flex flex-wrap items-center gap-2">
+      <h3 className="mt-1 truncate text-[18px] font-bold leading-snug">{c.name}</h3>
+      <p className="mt-2.5 line-clamp-2 text-[14.5px] leading-[1.6] text-muted-alt">{c.desc}</p>
+      <div className="mt-auto flex flex-wrap items-center gap-2 pt-4">
         <span className={`rounded-pill border px-2.5 py-1 text-[12px] font-semibold ${categoryColor(c.category)}`}>{categoryLabel(c.category)}</span>
         <span className="flex items-center gap-1 text-[12.5px] text-muted-alt"><MapPin size={13}/>{c.location}</span>
       </div>
