@@ -30,6 +30,9 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Install sharp for Next.js image optimization in standalone mode
+RUN npm install --os=linux --cpu=x64 sharp
+
 USER nextjs
 EXPOSE 3000
 ENV PORT=3000
