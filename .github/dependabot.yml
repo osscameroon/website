@@ -7,7 +7,7 @@ updates:
     allow:
       - dependency-type: "all"
     assignees:
-      - "tericcabrel"
+      - "elhmn"
     commit-message:
       prefix: "yarn prod"
       prefix-development: "yarn dev"
@@ -20,7 +20,7 @@ updates:
     allow:
       - dependency-type: "all"
     assignees:
-      - "Sanix-Darker"
+      - "elhmn"
     commit-message:
       prefix: "pip prod"
       prefix-development: "pip dev"
@@ -33,7 +33,7 @@ updates:
     allow:
       - dependency-type: "all"
     assignees:
-      - "Sanix-Darker"
+      - "elhmn"
     commit-message:
       prefix: "pip prod"
       prefix-development: "pip dev"
