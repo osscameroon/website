@@ -8,7 +8,11 @@ export async function apiFetch<T>(path: string, init?: RequestInit & { noCache?:
   const res = await fetch(`${getApiBase()}${path}`, {
     ...fetchInit,
     signal,
-    headers: { 'Content-Type': 'application/json', ...fetchInit?.headers },
+    headers: {
+      'Content-Type': 'application/json',
+      'Connection': 'close',
+      ...fetchInit?.headers,
+    },
     ...(noCache ? { cache: 'no-store' as const } : { next: { revalidate: 60 } }),
   });
   const json = await res.json();
