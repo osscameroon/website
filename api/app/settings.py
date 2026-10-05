@@ -27,6 +27,7 @@ def get_conf(context: str, key: str, fallback: str = "") -> str:
         return fallback
     return value
 
+
 # meili configurations
 MEILISEARCH_HOST = get_conf("meilisearch", "MEILISEARCH_HOST")
 MEILISEARCH_MASTER_KEY = get_conf("meilisearch", "MEILISEARCH_MASTER_KEY")
