@@ -20,12 +20,12 @@ def get_conf(context: str, key: str, fallback: str = "") -> str:
     value = ""
     if context in conf:
         value = conf.get(context, key, fallback="")
-    if value == "":
-        value = os.environ.get(key, default="")
+    tmp_value = os.environ.get(key, default="")
+    if tmp_value != "":
+        value = tmp_value
     if value == "":
         return fallback
     return value
-
 
 # meili configurations
 MEILISEARCH_HOST = get_conf("meilisearch", "MEILISEARCH_HOST")
