@@ -21,7 +21,7 @@ export function Pager({ page, pages, scrollTop = false }: { page: number; pages:
   const nums = Array.from({ length: end - start + 1 }, (_, i) => start + i);
 
   const btn = (label: string, key: string, active: boolean, disabled: boolean, target: number, hideOnMobile = false) =>
-    <button key={key} onClick={() => go(target)} disabled={disabled} aria-current={active ? 'page' : undefined} className={`h-[38px] min-w-[38px] rounded-[7px] border-0 px-2 text-[15px] font-medium transition-colors ${active ? 'bg-blue text-white font-bold' : disabled ? 'text-muted-light-3 cursor-not-allowed' : 'text-ink-70 hover:bg-grey-100'} ${hideOnMobile ? 'hidden sm:inline-flex' : ''}`}>{label}</button>;
+    <button key={key} onClick={() => go(target)} disabled={disabled} aria-current={active ? 'page' : undefined} className={`inline-flex h-[38px] min-w-[38px] items-center justify-center rounded-[7px] border-0 px-2 text-[15px] font-medium transition-colors ${active ? 'bg-blue text-white font-bold' : disabled ? 'text-muted-light-3 cursor-not-allowed' : 'text-ink-70 hover:bg-grey-100'} ${hideOnMobile ? 'hidden sm:inline-flex' : ''}`}>{label}</button>;
 
   return <div className="flex items-center gap-1 rounded-input border border-border bg-white p-1.5 sm:p-2">
     {btn('«', 'first', false, page <= 1, 1, true)}
