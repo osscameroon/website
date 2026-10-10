@@ -15,57 +15,6 @@ Here is the part responsible to serve the page the users will interact with. The
 - Browse the list of projects on GitHub maintained by Cameroonian develop
 - View the trending tweets on the hashtag #caparledev
 
-#### Requirements
-- Node.js 10+
-- Yarn 1.21+
-
-#### How to install
-```bash
-cd frontend
-yarn install
-```
-
-Create configuration file for local environment by copying the `.env.example` 
-file then edit the content to met your local configuration
-```bash
-cp .env.example .env
-nano .env
-```
-
-#### How to launch
-```bash
-yarn start
-```
-
-
-## Backend api
-
-This is the backend part.
-
-#### Requirements
-
-- Python (3.x recommended)
-- pip (18.1)
-- make (GNU Make 4.2.1)
-- [meilisearch](https://www.meilisearch.com/)
-
-#### How to install
-
-You just have to follow these steps :
-```shell
-# cd to the api
-cd api
-
-# With make
-make install-deps
-```
-
-#### How to launch
-
-```sh
-make run
-```
-
 
 ## Scraper
 
@@ -101,11 +50,8 @@ make run
 
 
 ## How to contribute
-
-- Create an issue where you explain clearly the problem you want to solve 
-- Make a PR
-- If it's relevant, we're going to merge it.
-Yeah, it's simple as this !
+The OSSCameroon community is possible thanks to kind volunteers like you. We welcome all contributions to the community and are excited to welcome you aboard.
+> Please follow [Contribution guidelines](./CONTRIBUTING.md) to contribute
 
 
 ## LICENSE
