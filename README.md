@@ -2,7 +2,7 @@
 
 Our goal as a community is to improve the lives of individual members of the society. We hope to accomplish this by reinforcing Cameroonian developers to take up the habit of contributing to open source projects and technologies; especially projects with the potential to enhance the quality of life for our local communities. By promoting mentorship, collaboration and knowledge sharing, we ensure to provide a joyful environment for developers to put their best skill in the service of the society.
 
-You can access the WebSite [here](https://www.osscameroon.com/).
+You can access the WebSite [here](https://osscameroon.com/).
 
 ## Community Chat
 
