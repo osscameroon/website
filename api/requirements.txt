@@ -33,4 +33,4 @@ six==1.16.0
 toml==0.10.2
 typing_extensions==4.16.0
 urllib3==2.2.2
-Werkzeug==3.1.0
+Werkzeug==3.1.9
