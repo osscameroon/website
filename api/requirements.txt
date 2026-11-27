@@ -2,7 +2,7 @@ aniso8601==9.0.1
 annotated-types==0.7.0
 attrs==24.2.0
 camel-converter==3.1.2
-certifi==2024.7.4
+certifi==2026.10.19
 charset-normalizer==3.3.2
 click==8.1.7
 flake8==7.1.1
